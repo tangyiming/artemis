@@ -127,6 +127,12 @@
             <classifier>sources</classifier>
             <type>java-source</type>
         </dependency>
+        <!--  根据entity建DB表 -->
+        <dependency>
+            <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
+            <artifactId>mybatis-enhance-actable</artifactId>
+            <version>1.2.1.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

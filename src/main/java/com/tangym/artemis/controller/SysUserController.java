@@ -1,8 +1,10 @@
 package com.tangym.artemis.controller;
 
+import com.gitee.sunchenbin.mybatis.actable.manager.common.BaseCRUDManager;
 import com.tangym.artemis.entity.SysUser;
 import com.tangym.artemis.mapper.SysUserMapper;
 import com.tangym.artemis.service.SysUserServiceI;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,8 @@ public class SysUserController {
     SysUserMapper sysUserMapper;
     @Resource
     private SysUserServiceI sysUserServiceI;
+    @Autowired
+    private BaseCRUDManager baseCRUDManager;
 
 
     @PostMapping(value = "/register", produces = "application/json;charset=UTF-8")
@@ -41,7 +45,9 @@ public class SysUserController {
      */
     @GetMapping("/all")
     public List<SysUser> all() {
-        return sysUserMapper.selectList(null);
+//        return sysUserMapper.selectList(null);
+        return baseCRUDManager.selectAll(SysUser.class);
+
     }
 
     /**

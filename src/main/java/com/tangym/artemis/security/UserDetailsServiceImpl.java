@@ -1,9 +1,11 @@
 package com.tangym.artemis.security;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+//import com.baomidou.mybatisplus.core.conditions.Wrapper;
+//import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.gitee.sunchenbin.mybatis.actable.manager.common.BaseCRUDManager;
 import com.tangym.artemis.entity.SysUser;
-import com.tangym.artemis.mapper.SysUserMapper;
+//import com.tangym.artemis.mapper.SysUserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +24,21 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Resource
-    private SysUserMapper sysUserMapper;
+//    @Resource
+//    private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private BaseCRUDManager baseCRUDManager;
 
     @Override
     public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
 
-        SysUser condition = new SysUser();
-        condition.setUserid(userid);
-        Wrapper<SysUser> conditionWrapper = new QueryWrapper<>(condition);
-        SysUser sysUser = sysUserMapper.selectOne(conditionWrapper);
+//        SysUser condition = new SysUser();
+//        condition.setUserid(userid);
+//        Wrapper<SysUser> conditionWrapper = new QueryWrapper<>(condition);
+//        SysUser sysUser = sysUserMapper.selectOne(conditionWrapper);
+        SysUser sysUser = baseCRUDManager.selectOne(SysUser.builder().userid(userid).build());
+
 
         if (sysUser == null) {
             throw new UsernameNotFoundException(userid);

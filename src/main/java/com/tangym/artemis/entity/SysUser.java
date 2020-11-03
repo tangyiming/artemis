@@ -1,11 +1,11 @@
 package com.tangym.artemis.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
+import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
+import com.gitee.sunchenbin.mybatis.actable.annotation.Table;
+import com.gitee.sunchenbin.mybatis.actable.annotation.Unique;
+import com.gitee.sunchenbin.mybatis.actable.command.BaseModel;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
+import lombok.*;
 
 /**
  * <p>
@@ -15,47 +15,55 @@ import java.io.Serializable;
  * @author backtym@live.cn
  * @since 2020-10-22
  */
+@Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class SysUser implements Serializable {
+@Table
+public class SysUser extends BaseModel {
 
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 874402310422940419L;
     /**
      * id
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @Column(name = "id", type = MySqlTypeConstant.INT, length = 11, isKey = true, isAutoIncrement = true)
     private Integer id;
 
     /**
      * 用户id
      */
+    @Unique
+    @Column(name = "userid", type = MySqlTypeConstant.VARCHAR, length = 32)
     private String userid;
 
     /**
      * 密码
      */
+    @Column(name = "password", type = MySqlTypeConstant.VARCHAR, length = 64)
     private String password;
 
     /**
      * 真实姓名
      */
+    @Column(name = "username", type = MySqlTypeConstant.VARCHAR, length = 8)
     private String username;
 
     /**
      * 邮箱
      */
+    @Column(name = "email", type = MySqlTypeConstant.VARCHAR, length = 32)
     private String email;
 
     /**
      * 部门
      */
+    @Column(name = "bu", type = MySqlTypeConstant.VARCHAR, length = 16)
     private String bu;
 
     /**
      * 权限角色
      */
+    @Column(name = "user_role", type = MySqlTypeConstant.VARCHAR, length = 8)
     private String userRole;
-
-
 }

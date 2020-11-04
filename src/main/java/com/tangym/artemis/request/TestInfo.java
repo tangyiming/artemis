@@ -9,9 +9,8 @@ import lombok.Data;
  * @date 2020/10/30 10:23
  */
 @Data
-public class TestInfo {
+public class TestInfo extends Info {
     private String testType;
     private String projectName;
     private String testPlanName;
-
 }

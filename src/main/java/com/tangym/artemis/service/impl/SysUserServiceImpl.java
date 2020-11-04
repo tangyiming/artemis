@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gitee.sunchenbin.mybatis.actable.manager.common.BaseCRUDManager;
+import com.tangym.artemis.constant.UserRole;
 import com.tangym.artemis.entity.SysUser;
 import com.tangym.artemis.mapper.SysUserMapper;
 import com.tangym.artemis.service.SysUserServiceI;
@@ -63,6 +64,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
             String password = bCryptPasswordEncoder.encode(sysUser.getPassword());
             sysUser.setPassword(password);
+            // 注册时，默认admin为管理员账户，其他为普通用户
+            if (UserRole.ADMIN.getRole().equalsIgnoreCase(sysUser.getUserid())) {
+                sysUser.setUserRole(UserRole.ADMIN.getRole());
+            }
+            sysUser.setUserRole(UserRole.USER.getRole());
 //            sysUserMapper.insert(sysUser);
             baseCRUDManager.insert(sysUser);
         } catch (DataAccessException e) {

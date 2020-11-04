@@ -1,12 +1,12 @@
 package com.tangym.artemis.service.impl;
 
-import com.tangym.artemis.constant.TestType;
+import com.tangym.artemis.request.Info;
 import com.tangym.artemis.service.FileServiceI;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author backtym@live.cn
@@ -14,16 +14,16 @@ import java.io.IOException;
  */
 @Component
 public class FileServiceImpl implements FileServiceI {
-    public static void main(String[] args) {
 
-        System.out.println(TestType.valueOf("JMETER"));
-    }
-
+    /**
+     * 上传文件
+     *
+     * @param files  文件列表
+     * @param info Json格式的Info对象
+     * @throws IOException IO异常
+     */
     @Override
-    public String save(MultipartFile file, String path) throws IOException {
-        File directory = new File("");
-        String courseFile = directory.getCanonicalPath();
-        System.out.println(courseFile);
-        return null;
+    public void uploadFilesAndReqeust(List<MultipartFile> files, Info info) throws IOException {
+        //todo 从PerformanceTestImpl.save这里抽出通用方法
     }
 }

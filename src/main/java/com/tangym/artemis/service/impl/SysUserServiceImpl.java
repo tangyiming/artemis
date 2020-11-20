@@ -1,15 +1,13 @@
 package com.tangym.artemis.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gitee.sunchenbin.mybatis.actable.manager.common.BaseCRUDManager;
 import com.tangym.artemis.constant.UserRole;
 import com.tangym.artemis.entity.SysUser;
+import com.tangym.artemis.exception.category.BusinessException;
 import com.tangym.artemis.mapper.SysUserMapper;
 import com.tangym.artemis.service.SysUserServiceI;
 import com.tangym.artemis.utils.TokenUtil;
-import com.tangym.artemis.exception.category.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,13 +31,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     private TokenUtil tokenUtil;
 
 //    @Resource
-//    private XlSysUserMapper xlSysUserMapper;
+//    private SysUserMapper sysUserMapper;
 
     @Autowired
     private BaseCRUDManager baseCRUDManager;
 
     @Override
-    public Object login(final SysUser sysUser) {
+    public String login(final SysUser sysUser) {
         try {
             // 验证用户名和密码是否对的
             authenticationManager.authenticate(
@@ -49,10 +47,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             throw new BusinessException("ERROR", "用户名或者密码不正确");
         }
         // 生成Token与查询用户权限
-//        XlSysUser condition = new XlSysUser();
-//        condition.setUserid(xlSysUser.getUserid());
-//        Wrapper<XlSysUser> conditionWrapper = new QueryWrapper<>(condition);
-//        XlSysUser xlSysUserData = xlSysUserMapper.selectOne(conditionWrapper);
+//        SysUser condition = new sysUser();
+//        condition.setUserid(sysUser.getUserid());
+//        Wrapper<SysUser> conditionWrapper = new QueryWrapper<>(condition);
+//        SysUser sysUserData = sysUserMapper.selectOne(conditionWrapper);
         SysUser sysUserData = baseCRUDManager.selectOne(SysUser.builder().userid(sysUser.getUserid()).build());
         return tokenUtil.createToken(sysUserData);
     }

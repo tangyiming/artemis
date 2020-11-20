@@ -1,7 +1,7 @@
 package com.tangym.artemis.config;
 
-import com.tangym.artemis.exception.GlobalDefaultExceptionHandler;
 import com.tangym.artemis.advice.CommonResponseDataAdvice;
+import com.tangym.artemis.exception.GlobalDefaultExceptionHandler;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class GlobalDefaultConfiguration {
     }
 
     @Bean
-    public CommonResponseDataAdvice xlCommonResponseDataAdvice(GlobalDefaultProperties globalDefaultProperties) {
+    public CommonResponseDataAdvice commonResponseDataAdvice(GlobalDefaultProperties globalDefaultProperties) {
         return new CommonResponseDataAdvice(globalDefaultProperties);
     }
 

@@ -19,7 +19,7 @@ public interface SysUserServiceI extends IService<SysUser> {
      * @return 用户登录成功返回的Token
      * @throws AuthenticationException 身份验证错误抛出异常
      */
-    Object login(final SysUser sysUser);
+    String login(final SysUser sysUser);
 
     /**
      * 用户注册

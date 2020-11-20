@@ -36,7 +36,7 @@ public class SysUserController {
     }
 
     @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public Object login(@RequestBody final SysUser sysUser) throws AuthenticationException {
+    public String login(@RequestBody final SysUser sysUser) throws AuthenticationException {
         return sysUserServiceI.login(sysUser);
     }
 

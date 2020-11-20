@@ -1,6 +1,9 @@
 # Artemis
 > 应用名字来源于月神Artemis,是女性纯洁的化身
 
+## 技术栈
+SpringBoot/Spring Security/JJWT/Mybatis-Plus/A.CTable/Mysql
+
 ## 开发进度
 - [x] 环境与数据库配置
 - [x] mybatis plus设置
@@ -20,7 +23,7 @@
 jar包deployed到服务器后：
 
 ```bash
-[root@localhost /]# cd /opt/xl-test-platform-server-jar/target/
+[root@localhost /]# cd /opt/artemis-jar/target/
 [root@localhost /]# netstat -anp | grep 8081
 [root@localhost /]# kill 进程
 [root@localhost target]# nohup java -jar artemis-1.0.0-SNAPSHOT.jar &

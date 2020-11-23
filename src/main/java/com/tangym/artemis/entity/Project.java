@@ -84,7 +84,7 @@ public class Project extends BaseModel {
     /**
      * 扩展信息字段，针对不同类型的项目，可以存储特殊信息
      */
-    @Column(name = "attribute_json_text", type = MySqlTypeConstant.VARCHAR, length = 255)
-    private String attributeJsonText;
+    @Column(name = "attribute_json", type = MySqlTypeConstant.JSON)
+    private String attributeJson;
 
 }
